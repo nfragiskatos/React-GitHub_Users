@@ -1,39 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import { GitHubContext } from "../context/context";
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
+import { ExampleChart, Pie2D, Column3D, Bar3D, Doughnut2D } from "./Charts";
 const Repos = () => {
   const { repos } = React.useContext(GitHubContext);
 
-  const chartData = {
-    chart: {
-      caption: "Countries With Most Oil Reserves [2017-18]",
-      subCaption: "In MMbbl = One Million barrels",
-      xAxisName: "Country",
-      yAxisName: "Reserves (MMbbl)",
-      numberSuffix: "K",
-      theme: "fusion",
+  const chartData = [
+    {
+      label: "HTML",
+      value: "12",
     },
-    data: [
-      {
-        label: "HTML",
-        value: "12",
-      },
-      {
-        label: "CSS",
-        value: "23",
-      },
-      {
-        label: "Javascript",
-        value: "80",
-      },
-    ],
-  };
+    {
+      label: "CSS",
+      value: "23",
+    },
+    {
+      label: "Javascript",
+      value: "80",
+    },
+  ];
 
   return (
     <section className="section">
       <Wrapper className="section-center">
-        <ExampleChart data={chartData} />
+        <Pie2D data={chartData} />
       </Wrapper>
     </section>
   );
