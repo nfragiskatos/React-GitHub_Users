@@ -5,7 +5,38 @@ import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
 const Repos = () => {
   const { repos } = React.useContext(GitHubContext);
 
-  return <ExampleChart></ExampleChart>;
+  const chartData = {
+    chart: {
+      caption: "Countries With Most Oil Reserves [2017-18]",
+      subCaption: "In MMbbl = One Million barrels",
+      xAxisName: "Country",
+      yAxisName: "Reserves (MMbbl)",
+      numberSuffix: "K",
+      theme: "fusion",
+    },
+    data: [
+      {
+        label: "HTML",
+        value: "12",
+      },
+      {
+        label: "CSS",
+        value: "23",
+      },
+      {
+        label: "Javascript",
+        value: "80",
+      },
+    ],
+  };
+
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <ExampleChart data={chartData} />
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.div`
