@@ -6,12 +6,17 @@ import { project } from './ProjectProperties';
 function App() {
 	return (
 		<Router>
-			<Route path={project.nav.dashboard} exact>
-				<Dashboard></Dashboard>
-			</Route>
-			<Route path={project.nav.login}>
-				<Login />
-			</Route>
+			<Switch>
+				<Route path={project.nav.dashboard} exact>
+					<Dashboard></Dashboard>
+				</Route>
+				<Route path={project.nav.login}>
+					<Login />
+				</Route>
+				<Route path={project.nav.error}>
+					<Error />
+				</Route>
+			</Switch>
 		</Router>
 	);
 }
