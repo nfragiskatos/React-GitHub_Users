@@ -5,25 +5,32 @@ import { ExampleChart, Pie2D, Column3D, Bar3D, Doughnut2D } from "./Charts";
 const Repos = () => {
   const { repos } = React.useContext(GitHubContext);
 
-  const chartData = [
-    {
-      label: "HTML",
-      value: "12",
-    },
-    {
-      label: "CSS",
-      value: "23",
-    },
-    {
-      label: "Javascript",
-      value: "80",
-    },
-  ];
+  let languages = repos.reduce((total, item) => {
+    const { language } = item;
+    if (!language) {
+      return total;
+    }
+    if (!total[language]) {
+      total[language] = { label: language, value: 1 };
+    } else {
+      total[language] = {
+        ...total[language],
+        value: total[language].value + 1,
+      };
+    }
+    return total;
+  }, {});
+
+  languages = Object.values(languages)
+    .sort((a, b) => {
+      return b.value - a.value;
+    })
+    .slice(0, 5);
 
   return (
     <section className="section">
       <Wrapper className="section-center">
-        <Pie2D data={chartData} />
+        <Pie2D data={languages} />
       </Wrapper>
     </section>
   );
