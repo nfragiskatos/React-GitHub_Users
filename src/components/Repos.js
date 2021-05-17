@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GitHubContext } from "../context/context";
-import { ExampleChart, Pie2D, Column2D, Bar2D, Doughnut2D } from "./Charts";
+import { Pie2D, Column2D, Bar2D, Doughnut2D } from "./Charts";
 const Repos = () => {
   const { repos } = React.useContext(GitHubContext);
 
