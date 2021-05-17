@@ -4,11 +4,12 @@ import { MdSearch } from "react-icons/md";
 import { GitHubContext } from "../context/context";
 const Search = () => {
   const [user, setUser] = React.useState("");
-  const { requests, error } = React.useContext(GitHubContext);
+  const { requests, error, searchGitHubUser } = React.useContext(GitHubContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
+      searchGitHubUser(user);
     }
   };
   return (
