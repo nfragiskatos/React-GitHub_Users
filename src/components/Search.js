@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
-import { GithubContext } from "../context/context";
+import { GitHubContext } from "../context/context";
 const Search = () => {
   const [user, setUser] = React.useState("");
-  //get things from global
+  const { requests } = React.useContext(GitHubContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    if (user) {
+    }
   };
   return (
     <section className="section">
@@ -22,10 +23,10 @@ const Search = () => {
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
-            <button type="submit">search</button>
+            {requests > 0 && <button type="submit">search</button>}
           </div>
         </form>
-        <h3>requests: 60/60</h3>
+        <h3>requests: {requests}/60</h3>
       </Wrapper>
     </section>
   );
