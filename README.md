@@ -3,6 +3,11 @@
 ## GitHub Pages
 https://nfragiskatos.github.io/React-GitHub_Users/
 
+### Test Login Information
+> **email:** nfragiskatos_test@gmail.com
+>
+> **password:** NfragiskatosTest1
+
 ## Goals
 * Learn React fundamentals and its components using GitHub API to search and display user information.
 * Learn how to leverage Auth0 to provide account features
