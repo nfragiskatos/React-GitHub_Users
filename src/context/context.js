@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import mockUser from "./mockData.js/mockUser";
-import mockRepos from "./mockData.js/mockRepos";
-import mockFollowers from "./mockData.js/mockFollowers";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import mockFollowers from "./mockData.js/mockFollowers";
+import mockRepos from "./mockData.js/mockRepos";
+import mockUser from "./mockData.js/mockUser";
 
 const rootUrl = "https://api.github.com";
 
@@ -46,14 +46,18 @@ const GitHubProvider = ({ children }) => {
       setGitHubUser(response.data);
       const { login, followers_url } = response.data;
 
-      // repos
-      axios(`${rootUrl}/users/${login}/repos?per_page=100`).then((response) => {
-        setRepos(response.data);
-      });
-
-      // followers
-      axios(`${followers_url}?per_page=100`).then((response) => {
-        setFollowers(response.data);
+      await Promise.allSettled([
+        axios(`${rootUrl}/users/${login}/repos?per_page=100`),
+        axios(`${followers_url}?per_page=100`),
+      ]).then((results) => {
+        const [repos, followers] = results;
+        const status = "fulfilled";
+        if (repos.status === status) {
+          setRepos(repos.value.data);
+        }
+        if (followers.status === status) {
+          setFollowers(followers.value.data);
+        }
       });
     } else {
       toggleError(true, "there is no user with that username.");
